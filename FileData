@@ -20,3 +20,12 @@ class FileData
     }
 }
 
+// Example of use to get price of product from ebay
+$shop= new FileData();
+$url="http://www.ebay.com/itm/Casio-MTP-V003L-1A-Men-Analog-Black-Leather-Strap-Black-Dial-Round-Watch-/121539032298"
+$data=file_get_contents($url);
+
+$cutBefore=array('<span class=\"notranslate\" id=\"prcIsum\" itemprop=\"price\"  style=\"\">US ');
+$cutAfter=array('</span>');
+$ebayPrice=$shop->getValueByCut($datas,$cutBefore,$cutAfter);
+echo($ebayPrice);
