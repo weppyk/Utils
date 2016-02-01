@@ -1,0 +1,22 @@
+namespace AppBundle\Util;
+
+
+class FileData
+{
+    /* Function return value by cutting text before string and after string
+     * Use it if you want get some value from site.
+     * For example, you can get price from e-commerce
+     */
+    public function getValueByCut($text,$cutBefore,$cutAfter,$remChars)
+    {
+        $repeat=count($cutBefore);
+        for($x=0;$x<$repeat;$x++){
+            $pattern='#'.$cutBefore[$x].'(.*?)'.$cutAfter[$x].'#s';
+            preg_match($pattern,$text, $match);
+            $text=$match[1];
+        }
+        $value=preg_replace('/\s+/', '', $text);
+        return $value;
+    }
+}
+
